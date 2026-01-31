@@ -9,6 +9,12 @@
 # Ignorar configuraciones locales de VSCode
 .vscode/
 
+# Ignorar archivos de depuración
+*.log
+
+# Ignorar archivos temporales de Code Runner
+tempCodeRunnerFile.*
+
 # Ignorar archivos de sistema
 .DS_Store
 Thumbs.db
