@@ -1,0 +1,2 @@
+IDcliente, nombre, apellido, cedula, direccion, telefono, correo, fechadeRegistro, estado
+1, aliss, noseq, 178025, calle, 0584561, aliss@gmail.com, 30/01/2026, Activo
