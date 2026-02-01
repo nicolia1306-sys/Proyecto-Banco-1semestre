@@ -139,3 +139,26 @@ void cargarGarantes(Garante garantes[], int &n){
     archivo.close();
     cout << "Garantes cargados desde garantes.csv exitosamente\n";
 }
+void menuGarantes(Garante garantes[], int &n){
+    int opcion;
+    do{
+        cout << "\n===MENU GARANTES===\n";
+        cout << "1. Registrar Garante\n";
+        cout << "2. Mostrar Garantes\n";
+        cout << "3. Modificar Garante\n";
+        cout << "4. Eliminar Garante\n";
+        cout << "5. Volver al Menú Principal\n";
+        cout << "Seleccione una opción: ";
+        cin >> opcion;
+        switch(opcion){
+            case 1: registrarGarante(garantes, n); break;
+            case 2: mostrarGarantes(garantes, n); break;
+            case 3: modificarGarante(garantes, n); break;
+            case 4: eliminarGarante(garantes, n); break;
+            case 5: guardarGarantes(garantes, n);
+                    cout << "Datos guardados. Volviendo al menú principal...\n";
+                    break;
+            default: cout << "Opción inválida. Intente de nuevo.\n";
+        }
+    }while(opcion != 5);
+}

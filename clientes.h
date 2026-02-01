@@ -8,5 +8,5 @@ void modificarCliente(Cliente clientes[], int n);
 void eliminarCliente(Cliente clientes[], int &n);
 void guardarClientes(const Cliente clientes[], int n);
 void cargarClientes(Cliente clientes[], int &n);
-
+void menuClientes(Cliente clientes[], int &n);
 #endif //CLIENTES_H

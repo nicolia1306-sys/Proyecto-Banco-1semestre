@@ -128,3 +128,26 @@ void cargarCuentas(CuentaAhorro cuentas[], int &n){
     archivo.close();
     cout << "Cuentas cargadas desde cuentas.csv exitosamente\n";
 }
+void menuCuentas(CuentaAhorro cuentas[], int &nCuentas, int &nClientes) {
+    int opcion;
+    do {
+        cout << "\n===MENU CUENTAS DE AHORRO===\n";
+        cout << "1. Registrar Cuenta\n";
+        cout << "2. Mostrar Cuentas\n";
+        cout << "3. Modificar Cuenta\n";
+        cout << "4. Eliminar Cuenta\n";
+        cout << "5. Volver al Menú Principal\n";
+        cout << "Seleccione una opción: ";
+        cin >> opcion;
+        switch(opcion) {
+            case 1: registrarCuenta(cuentas, nCuentas); break;
+            case 2: mostrarCuentas(cuentas, nCuentas); break;
+            case 3: modificarCuenta(cuentas, nCuentas); break;
+            case 4: eliminarCuenta(cuentas, nCuentas); break;
+            case 5: guardarCuentas(cuentas, nCuentas);
+                    cout << "Datos guardados. Volviendo al menú principal...\n";
+                    break;
+            default: cout << "Opción inválida. Intente de nuevo.\n";
+        }
+    } while(opcion != 5);
+}

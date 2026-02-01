@@ -137,3 +137,26 @@ void cargarPrestamos(Prestamo prestamos[], int &n){
     archivo.close();
     cout << "Préstamos cargados desde prestamos.csv exitosamente\n";
 }
+void menuPrestamos(Prestamo prestamos[], int &n){
+    int opcion;
+    do{
+        cout << "\n===MENU PRÉSTAMOS===\n";
+        cout << "1. Registrar Préstamo\n";
+        cout << "2. Mostrar Préstamos\n";
+        cout << "3. Modificar Préstamo\n";
+        cout << "4. Eliminar Préstamo\n";
+        cout << "5. Volver al Menú Principal\n";
+        cout << "Seleccione una opción: ";
+        cin >> opcion;
+        switch(opcion){
+            case 1: registrarPrestamo(prestamos, n); break;
+            case 2: mostrarPrestamos(prestamos, n); break;
+            case 3: modificarPrestamo(prestamos, n); break;
+            case 4: eliminarPrestamo(prestamos, n); break;
+            case 5: guardarPrestamos(prestamos, n);
+                    cout << "Datos guardados. Volviendo al menú principal...\n";
+                    break;
+            default: cout << "Opción inválida. Intente de nuevo.\n";
+        }
+    }while(opcion != 5);
+}

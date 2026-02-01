@@ -1,0 +1,2 @@
+IDprestamo, IDcliente, monto, tasaInteres, plazomeses, fechadeInicio, fechaVencimiento, estado, saldoPendiente
+5001,2,500,0.1,2,15/02/2026,05/05/2028,Activo,500

@@ -4,14 +4,14 @@
 #include "transacciones.h"
 using namespace std;
 
-void registrarTransaccion(Transaccion transacciones[], int &n, CuentaAhorro cuentas[], int nCuentas){
+void registrarTransaccion(Transaccion transacciones[], int &n, CuentaAhorro cuentasAhorro[], int nCuentasAhorro, CuentaCorriente cuentasCorrientes[], int nCuentasCorrientes) {
     cout << "\n===REGISTRAR TRANSACCIÓN===\n";
-    transacciones[n].IDtransaccion = n + 9001; // IDs de transacciones
+    transacciones[n].IDtransaccion = n + 9001; 
 
     cout << "Ingrese el número de cuenta: ";
     cin >> transacciones[n].NumerodeCuenta;
 
-    cout << "Tipo de transacción (Depósito/Retiro/Transferencia): ";
+    cout << "Tipo de transacción (Depósito/Retiro): ";
     cin.ignore();
     getline(cin, transacciones[n].tipo);
 
@@ -25,22 +25,39 @@ void registrarTransaccion(Transaccion transacciones[], int &n, CuentaAhorro cuen
     cout << "Ingrese una descripción: ";
     getline(cin, transacciones[n].descripcion);
 
-    // Actualizar saldo de la cuenta
-    for(int i=0; i<nCuentas; i++){
-        if(cuentas[i].NumerodeCuenta == transacciones[n].NumerodeCuenta){
-            if(transacciones[n].tipo == "Depósito"){
-                cuentas[i].saldo += transacciones[n].monto;
-            }else if(transacciones[n].tipo == "Retiro"){
-                cuentas[i].saldo -= transacciones[n].monto;
+    // Buscar en cuentas de ahorro
+    for(int i=0; i<nCuentasAhorro; i++) {
+        if(cuentasAhorro[i].NumerodeCuenta == transacciones[n].NumerodeCuenta) {
+            if(transacciones[n].tipo == "Depósito") {
+                cuentasAhorro[i].saldo += transacciones[n].monto;
+            } else if(transacciones[n].tipo == "Retiro") {
+                if(transacciones[n].monto <= cuentasAhorro[i].saldo) {
+                    cuentasAhorro[i].saldo -= transacciones[n].monto;
+                } else {
+                    cout << "Error: saldo insuficiente en cuenta de ahorro.\n";
+                }
             }
-            // Transferencia se puede manejar con lógica adicional
+        }
+    }
+
+    for(int i=0; i<nCuentasCorrientes; i++) {
+        if(cuentasCorrientes[i].NumerodeCuenta == transacciones[n].NumerodeCuenta) {
+            if(transacciones[n].tipo == "Depósito") {
+                cuentasCorrientes[i].saldo += transacciones[n].monto;
+            } else if(transacciones[n].tipo == "Retiro") {
+                double saldoDisponible = cuentasCorrientes[i].saldo + cuentasCorrientes[i].limiteSobregiro;
+                if(transacciones[n].monto <= saldoDisponible) {
+                    cuentasCorrientes[i].saldo -= transacciones[n].monto;
+                } else {
+                    cout << "Error: monto excede el límite de sobregiro.\n";
+                }
+            }
         }
     }
 
     n++;
     cout << "Transacción registrada exitosamente\n";
 }
-
 void mostrarTransacciones(const Transaccion transacciones[], int n){
     cout << "\n===HISTORIAL DE TRANSACCIONES===\n";
     if(n == 0){
@@ -99,4 +116,33 @@ void cargarTransacciones(Transaccion transacciones[], int &n){
     }
     archivo.close();
     cout << "Transacciones cargadas desde transacciones.csv exitosamente\n";
+}
+void menuTransacciones(Transaccion transacciones[], int &nTransacciones,
+                       CuentaAhorro cuentasAhorro[], int &nCuentasAhorro,
+                       CuentaCorriente cuentasCorrientes[], int &nCuentasCorrientes) {
+    int opcion;
+    do {
+        cout << "\n===MENU TRANSACCIONES===\n";
+        cout << "1. Registrar Transacción\n";
+        cout << "2. Mostrar Historial de Transacciones\n";
+        cout << "3. Volver al Menú Principal\n";
+        cout << "Seleccione una opción: ";
+        cin >> opcion;
+        switch(opcion) {
+            case 1:
+                registrarTransaccion(transacciones, nTransacciones,
+                                     cuentasAhorro, nCuentasAhorro,
+                                     cuentasCorrientes, nCuentasCorrientes);
+                break;
+            case 2:
+                mostrarTransacciones(transacciones, nTransacciones);
+                break;
+            case 3:
+                guardarTransacciones(transacciones, nTransacciones);
+                cout << "Datos guardados. Volviendo al menú principal...\n";
+                break;
+            default:
+                cout << "Opción inválida. Intente de nuevo.\n";
+        }
+    } while(opcion != 3);
 }

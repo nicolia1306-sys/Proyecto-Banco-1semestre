@@ -1,0 +1,2 @@
+NumerodeCuenta, IDcliente, saldo, fechadeApertura, estado, tipodemoneda, tasaInteres
+1001,2,1000,31/01/2026,Activa,USD,0.25

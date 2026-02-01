@@ -9,5 +9,5 @@ void modificarCuentaCorriente(CuentaCorriente cuentas[], int n);
 void eliminarCuentaCorriente(CuentaCorriente cuentas[], int &n);
 void guardarCuentasCorrientes(const CuentaCorriente cuentas[], int n);
 void cargarCuentasCorrientes(CuentaCorriente cuentas[], int &n);
-
+void menuCuentasCorrientes(CuentaCorriente cuentasCorrientes[], int &nCuentasCorrientes);
 #endif //CUENTAS_CORRIENTES_H

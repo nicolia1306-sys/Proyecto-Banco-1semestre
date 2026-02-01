@@ -145,3 +145,36 @@ void cargarClientes(Cliente clientes[], int &n){
     archivo.close();
     cout << "Clientes cargados desde clientes.csv exitosamente\n";
 }
+void menuClientes(Cliente clientes[], int &n){
+    int opcion;
+    do{
+        cout << "\n===MENU CLIENTES===\n";
+        cout << "1. Registrar Cliente\n";
+        cout << "2. Mostrar Clientes\n";
+        cout << "3. Modificar Cliente\n";
+        cout << "4. Eliminar Cliente\n";
+        cout << "5. Volver al Menú Principal\n";
+        cout << "Seleccione una opción: ";
+        cin >> opcion;
+        switch(opcion){
+            case 1:
+                registrarCliente(clientes, n);
+                break;
+            case 2:
+                mostrarClientes(clientes, n);
+                break;
+            case 3:
+                modificarCliente(clientes, n);
+                break;
+            case 4:
+                eliminarCliente(clientes, n);
+                break;
+            case 5:
+                guardarClientes(clientes, n);
+                cout << "Datos Guardados.Volviendo al menú principal...\n";
+                break;
+            default:
+                cout << "Opción inválida. Intente de nuevo.\n";
+        }
+    }while(opcion != 5);
+}

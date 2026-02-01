@@ -9,5 +9,5 @@ void modificarCuenta(CuentaAhorro cuentas[], int n);
 void eliminarCuenta(CuentaAhorro cuentas[], int &n);
 void guardarCuentas(const CuentaAhorro cuentas[], int n);
 void cargarCuentas(CuentaAhorro cuentas[], int &n);
-
+void menuCuentas(CuentaAhorro cuentas[], int &nCuentas, int &nClientes);
 #endif //CUENTAS_H

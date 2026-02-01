@@ -9,5 +9,5 @@ void modificarGarante(Garante garantes[], int n);
 void eliminarGarante(Garante garantes[], int &n);
 void guardarGarantes(const Garante garantes[], int n);
 void cargarGarantes(Garante garantes[], int &n);
-
+void menuGarantes(Garante garantes[], int &nGarantes);
 #endif //GARANTES_H

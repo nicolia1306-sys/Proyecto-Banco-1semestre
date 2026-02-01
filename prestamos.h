@@ -9,5 +9,5 @@ void modificarPrestamo(Prestamo prestamos[], int n);
 void eliminarPrestamo(Prestamo prestamos[], int &n);
 void guardarPrestamos(const Prestamo prestamos[], int n);
 void cargarPrestamos(Prestamo prestamos[], int &n);
-
+void menuPrestamos(Prestamo prestamos[], int &nPrestamos);
 #endif //PRESTAMOS_H

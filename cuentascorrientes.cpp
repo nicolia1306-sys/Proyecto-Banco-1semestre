@@ -123,3 +123,26 @@ void cargarCuentasCorrientes(CuentaCorriente cuentas[], int &n){
     archivo.close();
     cout << "Cuentas corrientes cargadas desde cuentas_corrientes.csv exitosamente\n";
 }
+void menuCuentasCorrientes(CuentaCorriente cuentas[], int &n){
+    int opcion;
+    do{
+        cout << "\n===MENU CUENTAS CORRIENTES===\n";
+        cout << "1. Registrar Cuenta Corriente\n";
+        cout << "2. Mostrar Cuentas Corrientes\n";
+        cout << "3. Modificar Cuenta Corriente\n";
+        cout << "4. Eliminar Cuenta Corriente\n";
+        cout << "5. Volver al Menú Principal\n";
+        cout << "Seleccione una opción: ";
+        cin >> opcion;
+        switch(opcion){
+            case 1: registrarCuentaCorriente(cuentas, n); break;
+            case 2: mostrarCuentasCorrientes(cuentas, n); break;
+            case 3: modificarCuentaCorriente(cuentas, n); break;
+            case 4: eliminarCuentaCorriente(cuentas, n); break;
+            case 5: guardarCuentasCorrientes(cuentas, n);
+                    cout << "Datos guardados. Volviendo al menú principal...\n";
+                    break;
+            default: cout << "Opción inválida. Intente de nuevo.\n";
+        }
+    }while(opcion != 5);
+}
